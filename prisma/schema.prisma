@@ -59,3 +59,36 @@ model VerificationToken {
 
     @@unique([identifier, token])
 }
+
+model SSEEvent {
+  id        String   @id @default(cuid())
+  sessionToken String?  // null for systemwide events
+  clientId  String?
+  event     String
+  payload   Json
+  receivedAt DateTime @default(now())
+}
+
+model SSESubscription {
+  id        String   @id @default(cuid())
+  sessionToken String
+  eventName String
+  clientId  String?
+  createdAt DateTime @default(now())
+  
+  @@unique([sessionToken, eventName, clientId])
+}
+
+model SSESession {
+  id          String   @id @default(cuid())
+  clientId    String   @unique
+  sessionToken String?
+  username    String?
+  status      String   @default("online") // online, offline, away
+  lastSeen    DateTime @default(now())
+  lastPing    DateTime @default(now())
+  userAgent   String?
+  ipAddress   String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

@@ -30,6 +30,8 @@ import type { RouteData } from "@/types/routes";
 export const paths = {
   landingPage: "/",
   homePage: "/home",
+  ssedemo: "/sse-demo",
+  sseadmin: "/sse-admin",
   reelsUploadPage: "/reels/upload",
 } as const;
 
@@ -44,6 +46,16 @@ export const routes: Record<keyof typeof paths, RouteData> = {
   homePage: {
     name: "Home Page",
     path: paths.homePage,
+    accessType: "protected",
+  },
+  ssedemo: {
+    name: "SSE Demo",
+    path: paths.ssedemo,
+    accessType: "protected",
+  },
+  sseadmin: {
+    name: "SSE Admin",
+    path: paths.sseadmin,
     accessType: "protected",
   },
   reelsUploadPage: {

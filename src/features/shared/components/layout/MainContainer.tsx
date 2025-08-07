@@ -1,4 +1,4 @@
-import { cn } from "@/shared/utils";
+import { cn } from "@/features/shared/utils";
 import { type HTMLAttributes } from "react";
 
 interface MainContainerProps extends HTMLAttributes<HTMLElement> {
